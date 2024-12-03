@@ -55,7 +55,7 @@ bool Tablero::tablero_lleno() {
 }
 
 bool Tablero::fin_partida(){
-    return tablero_lleno() or winner != -1;
+    return tablero_lleno() or ganar_partida() != -1;
 }
 
 int Tablero::mini(){

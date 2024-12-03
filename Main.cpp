@@ -8,6 +8,7 @@ void input_tablero(int n, int m, Tablero* tabl){
             tabl -> tablero[n][m] = 0;
             tabl -> winner = tabl -> ganar_partida();
             tabl -> poner_ficha_ia();
+            tabl -> winner = tabl -> ganar_partida();
         }
     } else {
         cout << "input invalidos" << endl;
@@ -22,14 +23,17 @@ int main(){
         cin >> x;
         cin >> y;
         input_tablero(x,y,a);
+        if (a -> tablero_lleno()){
+            break;
+        }
     }
     if (a -> winner == 0){
         cout << "Gano el jugador" << endl;
-    } else {
+    } else if (a -> winner == 1){
         cout << "Gano la IA" << endl;
+    } else {
+        cout << "Empate" << endl;
     }
-    a -> mostrar_tablero();
-
     
     return 0;
 }
