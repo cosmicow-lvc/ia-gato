@@ -58,7 +58,7 @@ bool Tablero::fin_partida(){
     return tablero_lleno() or ganar_partida() != -1;
 }
 
-int Tablero::mini(){
+int Tablero::mini(int alpha, int beta){
     if (fin_partida()){
         if (ganar_partida() != -1){
             return 1;
@@ -66,24 +66,36 @@ int Tablero::mini(){
             return 0;
         }
     }
-    int v = INT_MAX;
-    int aux;
+    int minEval = INT_MAX;
+    int eval;
     for (int i = 0; i < 3; i++){
         for (int j = 0; j < 3; j++){
             if (tablero[i][j] == -1){
                 tablero[i][j] = 0;
-                aux = imax();
-                if (aux < v){
-                    v = aux;
+                eval = imax(alpha, beta);
+
+                if (eval < minEval){
+                    minEval = eval;
                 }
+
+                if (beta > eval){
+                    beta = eval;
+                }    
+                
                 tablero[i][j] = -1;
             }
+            if (beta <= alpha){
+                break;
+            }
+        }
+        if (beta <= alpha){
+            break;
         }
     }   
-    return v;
+    return minEval;
 }
 
-int Tablero::imax(){
+int Tablero::imax(int alpha, int beta){
     if (fin_partida()){
         if (ganar_partida() != -1){
             return -1;
@@ -91,21 +103,32 @@ int Tablero::imax(){
             return 0;
         }
     }
-    int v = INT_MIN;
-    int aux;
+    int maxEval = INT_MIN;
+    int eval;
     for (int i = 0; i < 3; i++){
         for (int j = 0; j < 3; j++){
             if (tablero[i][j] == -1){
                 tablero[i][j] = 1;
-                aux = mini();
-                if (aux > v){
-                    v = aux;
+                eval = mini(alpha, beta);
+
+                if (eval > maxEval){
+                    maxEval = eval;
+                }
+
+                if (alpha < eval){
+                    alpha = eval;
                 }
                 tablero[i][j] = -1;
             }
+            if (beta <= alpha){
+                break;
+            }
+        }
+        if (beta <= alpha){
+            break;
         }
     }   
-    return v;
+    return maxEval;
 }
 
 
@@ -113,21 +136,34 @@ void Tablero::poner_ficha_ia(){
     if (!fin_partida()){
         int f = 0;
         int c = 0;
-        int v = INT_MIN;
-        int aux;
+        int maxEval = INT_MIN;
+        int eval;
+        int alpha = INT_MIN;
+        int beta = INT_MAX;
         for (int i = 0; i < 3; i++){
             for (int j = 0; j < 3; j++){
                 if (tablero[i][j] == -1){
                     tablero[i][j] = 1;
-                    aux = mini();
-                    if (aux > v){
-                        v = aux;
+                    eval = mini(alpha, beta);
+
+                    if (eval > maxEval){
+                        maxEval = eval;
                         f = i;
                         c = j;
                     }
+
+                    if (alpha < eval){
+                        alpha = eval;
+                    }
                     tablero[i][j] = -1;
                 }
+                if (beta <= alpha){
+                    break;
+                }
             }
+            if (beta <= alpha){
+                break;
+            }    
         }
         tablero[f][c] = 1;
         ultimo_movimiento[0] = f;

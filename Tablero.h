@@ -11,8 +11,8 @@ class Tablero {
     int ganar_partida();
     bool tablero_lleno();
     bool fin_partida();
-    int mini();
-    int imax();
+    int mini(int alpha, int beta);
+    int imax(int alpha, int beta);
     void poner_ficha_ia();
     ~Tablero();
 };
