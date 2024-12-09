@@ -81,6 +81,17 @@ Como ejemplos practicos tenemos:
 
 ---Explicación de la búsqueda en el árbol de juego y su evaluación---
 
+El jugador (X) empieza y coloca su ficha en la posición [0][0]. En ese momento, la máquina (O), utilizando el algoritmo Minimax, evaluará todas las posibles jugadas que puede hacer y   
+les asignará un puntaje basado en el resultado que puede obtener: +1 si la máquina gana, 0 si empatan,-1 si la máquina pierde. El objetivo de la máquina es maximizar el puntaje, 
+buscando siempre la jugada que le otorgue el puntaje más alto (+1).
+
+Para decidir en qué casilla colocar su ficha, la máquina creará una variable v que comenzará con el valor más bajo posible (INT_MIN). Luego, recorrerá cada casilla vacía en el tablero  
+donde colocará su ficha temporalmente en esa casilla y evaluará la jugada mediante el algoritmo Minimax. Si el puntaje obtenido de esa jugada es mayor que el valor actual de v,         
+entonces actualizará v con el nuevo puntaje y guardará las coordenadas de esa casilla como la mejor opción.
+
+Una vez que se han evaluado todas las casillas del tablero, la máquina colocará su ficha en la casilla correspondiente a las coordenadas almacenadas (la que dio el puntaje más alto), 
+en este caso, colocaria la ficha en las coordenadas [1][1].
+
 ### Optimización del algoritmo con poda Alfa-Beta:
 
 El algoritmo Minimax recorre el árbol de decisiones para encontrar la mejor jugada para el jugador actual, pero en árboles muy grandes (debido a la gran cantidad de movimientos posibles), el tiempo de ejecución puede ser muy largo. Por eso, utilizamos el algoritmo con poda Alfa-Beta para "podar" las ramas que no necesitamos explorar, ya que se ha determinado que no afectarán el resultado final.
