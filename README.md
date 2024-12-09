@@ -175,3 +175,36 @@ Considerando una partida donde el jugador hace la primera jugada y luego la comp
 | 4°         | ~1ms     | ~1ms     | 0ms        | 0%                      |
 
 ### Análisis de complejidad temporal de Minimax, antes y despues de aplicar la poda
+
+Antes de aplicar la poda alfa-beta:
+
+El algoritmo Minimax explora todas las ramas del árbol de decisión hasta una profundidad determinada (d) y con un factor de ramificación promedio (b).
+
+  Árbol completo:
+
+    Cada nodo tiene b hijos.
+    Hay b^d nodos en total en el árbol hasta la profundidad d.
+
+  Complejidad temporal:
+
+    Sin poda, Minimax debe evaluar todos los nodos del árbol.
+    Esto da una complejidad de 𝑂(b^d), que crece exponencialmente con la profundidad d.
+
+
+Después de aplicar la poda alfa-beta:
+
+Con la poda alfa-beta, el algoritmo elimina ramas del árbol que no son relevantes para la decisión final. Esto depende de:
+
+  1- El orden en que se evalúan los nodos (un buen orden mejora significativamente la poda).
+  2- Los valores de alfa y beta que se propagan durante la evaluación.
+
+En el mejor caso:
+
+  Si los nodos se ordenan de manera óptima, el algoritmo explora solo una fracción de los nodos.
+  La complejidad se reduce aproximadamente a O(b^(d/2)), ya que el espacio de búsqueda efectivo se reduce a la mitad en cada nivel.
+
+En el peor caso:
+
+  Si los nodos no están ordenados, el algoritmo no puede podar eficazmente.
+  La complejidad sigue siendo O(b^d), similar a la de Minimax sin poda.
+
