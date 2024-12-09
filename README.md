@@ -125,6 +125,44 @@ Evaluación de los Estados del Juego
 
 El algoritmo Minimax recorre el árbol de decisiones para encontrar la mejor jugada para el jugador actual, pero en árboles muy grandes (debido a la gran cantidad de movimientos posibles), el tiempo de ejecución puede ser muy largo. Por eso, utilizamos el algoritmo con poda Alfa-Beta para "podar" las ramas que no necesitamos explorar, ya que se ha determinado que no afectarán el resultado final.
 
+La poda alfa-beta agrega dos variables, alfa y beta, para descartar ramas del árbol que no influirán en la decisión final:
+
+    Alfa: El valor máximo garantizado para el jugador MAX hasta el momento.
+    Beta: El valor mínimo garantizado para el jugador MIN hasta el momento.
+
+Principio de la Poda
+
+  La poda ocurre bajo las siguientes condiciones:
+
+    Mientras se explora un nodo, si el valor actual ya es peor que una decisión previamente encontrada (en términos de alfa o beta), no se evalúan las ramas restantes del nodo porque no cambiarán el resultado.
+
+  Esto se traduce en:
+
+    Corte alfa: Si un nodo MIN encuentra un valor menor o igual a alfa (ya es peor para MAX), no se evalúan más hijos.
+    Corte beta: Si un nodo MAX encuentra un valor mayor o igual a beta (ya es peor para MIN), no se evalúan más hijos.
+
+Funcionamiento del Algoritmo
+
+  El algoritmo recorre el árbol de decisión de forma recursiva, aplicando la lógica de minimax con los límites dados por alfa y beta. A continuación, se describe el flujo:
+
+    Inicialmente, alfa = −∞ y beta = +∞
+
+    A medida que se evalúan nodos:
+
+      Para un nodo MAX:
+        
+        Se actualiza alfa: 
+          𝛼=max(𝛼,valor del nodo)
+          Si alfa ≥ beta, se interrumpe la evaluación de los hijos (corte beta).
+
+        Para un nodo MIN:
+          
+          Se actualiza beta: 
+            β=min(β,valor del nodo).
+            Si beta ≤ alfa, se interrumpe la evaluación de los hijos (corte alfa).
+
+La poda reduce significativamente la cantidad de nodos explorados al detener la evaluación de ramas inútiles.
+
 ### Algoritmo sin poda v/s Algoritmo con poda Alfa-Beta:
 
 Considerando una partida donde el jugador hace la primera jugada y luego la computadora, se realizan los mismos movimientos 3 veces y se promedia el tiempo de ejecución.
