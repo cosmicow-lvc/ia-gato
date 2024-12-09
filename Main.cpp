@@ -40,6 +40,7 @@ void partida_vs_jugador(){
     while (tablero -> winner == -1){
         tablero -> mostrar_tablero();
         string x, y;
+        cout << "Turno del jugador " << jugador << endl;
         cout << "Ingrese una fila entre [0,1,2]" << endl;
         cin >> x;
         if (x == "2" || x == "1" || x == "0"){
