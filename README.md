@@ -117,7 +117,8 @@ Evaluación de los Estados del Juego
 
     Si un jugador tiene tres posibles jugadas con resultados -1, 0, +1, el jugador Max elegirá la jugada con el resultado +1, mientras que el jugador Min optará por la jugada con el resultado -1.
 
-     
+### Elección de casilla a colocar   
+
     En el siguiente fragmento de codigo: "if (eval > maxEval) { maxEval = eval; f = i; c = j; }" se compara los puntajes de cada casilla y se queda con la jugada que tenga el puntaje máximo. Cuando encuentre una jugada con un puntaje mayor que el valor actual de maxEval, actualizará este puntaje y guardará las coordenadas de la casilla correspondiente. Al finalizar el análisis de todas las casillas, la máquina colocará su ficha en la casilla con las coordenadas guardadas, es decir, en la que dio el puntaje más alto. Si hay más de una casilla con el mismo puntaje máximo, elegirá la primera que obtenga ese puntaje
 
 ### Optimización del algoritmo con poda Alfa-Beta:
