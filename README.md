@@ -31,7 +31,7 @@ Explicación de la búsqueda en el árbol de juego y su evaluación
 
 ### Optimización del algoritmo con poda Alfa-Beta:
 
-Explicar la tecnica para reducir el numero de nodos explorados
+El algoritmo Minimax recorre el árbol de decisiones para encontrar la mejor jugada para el jugador actual, pero en árboles muy grandes (debido a la gran cantidad de movimientos posibles), el tiempo de ejecución puede ser muy largo. Por eso, utilizamos el algoritmo con poda Alfa-Beta para "podar" las ramas que no necesitamos explorar, ya que se ha determinado que no afectarán el resultado final.
 
 ### Algoritmo sin poda v/s Algoritmo con poda Alfa-Beta:
 
