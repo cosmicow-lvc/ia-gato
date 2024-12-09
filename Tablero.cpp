@@ -11,16 +11,20 @@ Tablero::Tablero(){
 }
 
 void Tablero::mostrar_tablero(){
+    std::cout << "-------" << std::endl;
     for (int i = 0; i < 3; i++){
+        std::cout << "|";
         for (int j = 0; j < 3; j++){
             if (tablero[i][j] == 0) {
-                std::cout << "x";
+                std::cout << "x|";
             } else if (tablero[i][j] == 1) {
-                std::cout << "o";
+                std::cout << "o|";
             } else {
-                std::cout << " ";
+                std::cout << " |";
             }
         }
+        std::cout << "\n";
+        std::cout << "-------";
         std::cout << "\n";
     }        
 }

@@ -1,9 +1,10 @@
 #include <iostream>
 #include "Tablero.h"
+#include "Tablerosinpoda.h"
 using namespace std;
 
 void input_tablero(int n, int m, Tablero* tabl){
-    if (n >= 0 && n < 3 && m < 3 && m >= 0 && tabl -> tablero[n][m] == -1){
+    if (tabl -> tablero[n][m] == -1){
         if (tabl -> winner == -1){
             tabl -> tablero[n][m] = 0;
             tabl -> winner = tabl -> ganar_partida();
@@ -11,29 +12,54 @@ void input_tablero(int n, int m, Tablero* tabl){
             tabl -> winner = tabl -> ganar_partida();
         }
     } else {
-        cout << "input invalidos" << endl;
+        cout << "Posicion ocupada" << endl;
     }
+    
 }
 
-int main(){
-    Tablero* a = new Tablero();
-    while (a -> winner == -1){
-        a -> mostrar_tablero();
-        int x, y;
+void partida_normal(){
+    Tablero* tablero = new Tablero();
+    cout << "Bienvenido al juego de Gato!" << endl;
+    cout << "estos valores tienen los siguientes significados:" << endl;
+    cout << " 0 = primera fila o columna del tablero" << endl;
+    cout << " 1 = segunda fila o columna del tablero" << endl;
+    cout << " 2 = tercera fila o columna del tablero" << endl;
+    cout << "Espacio en blanco entre fichas significa una casilla vacia" << endl;
+    cout << "Su ficha es X, usted empieza" << endl;
+    while (tablero -> winner == -1){
+        tablero -> mostrar_tablero();
+        string x, y;
+        cout << "Ingrese una fila entre [0,1,2]" << endl;
         cin >> x;
-        cin >> y;
-        input_tablero(x,y,a);
-        if (a -> tablero_lleno()){
+        if (x == "2" || x == "0" || x == "1"){
+            cout << "Ingrese una columna entre [0,1,2]" << endl;
+            cin >> y;
+            if (y == "2" || y == "0" || y == "1"){
+                input_tablero(stoi(x),stoi(y),tablero);
+            } else {
+                cout << "Input invalido" << endl;
+                continue;
+            }
+        } else {
+            cout << "Input invalido" << endl;
+            continue;   
+        }
+        if (tablero -> tablero_lleno()){
             break;
         }
     }
-    if (a -> winner == 0){
+    if (tablero -> winner == 0){
         cout << "Gano el jugador" << endl;
-    } else if (a -> winner == 1){
+    } else if (tablero -> winner == 1){
         cout << "Gano la IA" << endl;
     } else {
         cout << "Empate" << endl;
     }
+    delete tablero;
+}
+
+int main(){
+    partida_normal();
     
     return 0;
 }
