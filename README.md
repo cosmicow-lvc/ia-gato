@@ -25,12 +25,21 @@ Víctor Jopia Santander ; 21.719.697.3 ; victor.jopia01@alumnos.ucn.cl ; C-2
 
 El algoritmo se basa en estimar que jugada es la mejor para la maquina por medio de fuerza bruta, simulando todas las posibles jugadas y luego escoger la que le convenga más.
 
+Ejemplos practicos
+
+Explicación de la búsqueda en el árbol de juego y su evaluación
+
 ### Optimización del algoritmo con poda Alfa-Beta:
 
-dsdada
+Explicar la tecnica para reducir el numero de nodos explorados
 
 ### Algoritmo sin poda v/s Algoritmo con poda Alfa-Beta:
 
-Coño que le ponen aguacate al perro caliente el diablo
+Considerando una partida donde el jugador hace la primera jugada y luego la computadora, se realizan los mismos movimientos 3 veces y se promedia el tiempo de ejecución.
 
-
+| Movimiento | Sin poda | Con poda | Diferencia | Porcentaje de reduccion |
+| ---------- | -------- | -------- | ---------- | ----------------------- |
+| 1°         | ~4000ms  | ~220ms   | 3780ms     | 94.5%                   |
+| 2°         | ~105ms   | ~33ms    | 72ms       | 68.6%                   |
+| 3°         | ~8ms     | ~3ms     | 5ms        | 62.5%                   |
+| 4°         | ~1ms     | ~1ms     | 0ms        | 0%                      |
