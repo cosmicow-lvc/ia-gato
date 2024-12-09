@@ -25,9 +25,61 @@ Víctor Jopia Santander ; 21.719.697.3 ; victor.jopia01@alumnos.ucn.cl ; C-2
 
 El algoritmo se basa en estimar que jugada es la mejor para la maquina por medio de fuerza bruta, simulando todas las posibles jugadas y luego escoger la que le convenga más.
 
-Ejemplos practicos
+---Ejemplos practicos---
 
-Explicación de la búsqueda en el árbol de juego y su evaluación
+Este algoritmo se utiliza bajo determinadas situaciones y factores, por ejemplo se aplica en escenarios donde dos jugadores compiten y las ganancias de un jugador son las pérdidas del otro, como en el caso del ajedrez, damas y el gato, además la información debe ser perfecta, con esto nos referimos a que ambos jugadores tienen acceso completo al estado del juego y a los posibles movimientos, es decir no existe la aleatoriedad, también cada jugada tiene solo un resultado posible y se puede asignar un valor numérico a cada estado del juego que refleje ganar, empatar o perder, finalmente el juego debe ser por turnos, los jugadores se alternan para tomar decisiones en un formato secuencial, lo cual permite el funcionamiento del algoritmo.
+
+Como ejemplos practicos tenemos:
+
+1.- El juego del gato
+    
+    Analisis de caso simple:
+    
+  Escenario
+
+ X | O | X
+  ---------
+ O | X |  
+  ---------
+   |   | O
+
+   Para que x gane.
+
+  Opciones de "X":
+  
+   Mover a la posición (3,1) (gana el juego).
+   Mover a cualquier otra posición (no garantiza ganar en este turno).
+
+  Evaluación del Árbol:
+
+   Si "X" elige (3,1), asegura la victoria (valor de utilidad = +1).
+   Si "X" elige cualquier otra posición, "O" podría ganar en el siguiente turno.
+
+  Decisión Óptima:
+
+   El algoritmo Minimax evalúa todas las posibilidades y selecciona (3,1) para maximizar las posibilidades de ganar.
+
+2.- Juego de Cartas Simplificado
+
+    Escenario
+     Dos jugadores compiten para tener la suma más cercana a 21, utilizando números entre 1 y 10. El jugador 1 comienza con 15 y el jugador 2 tiene 18.
+
+    Análisis:
+      Opciones del Jugador 1:
+
+      Tomar una carta adicional.
+      No tomar una carta (mantener 15).
+
+    Opciones del Jugador 2:
+
+      Si el Jugador 1 toma una carta y excede 21, el Jugador 2 gana automáticamente.
+      Si el Jugador 1 no toma una carta, el Jugador 2 puede detenerse en 18.
+    
+    Decisión Óptima:
+
+      El algoritmo evalúa las posibilidades y concluye que el Jugador 1 debe tomar una carta solo si no excede 21. Esto maximiza las probabilidades de acercarse a 21.
+
+---Explicación de la búsqueda en el árbol de juego y su evaluación---
 
 ### Optimización del algoritmo con poda Alfa-Beta:
 
