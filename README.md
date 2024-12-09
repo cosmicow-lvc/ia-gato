@@ -79,7 +79,44 @@ Como ejemplos practicos tenemos:
 
       El algoritmo evalúa las posibilidades y concluye que el Jugador 1 debe tomar una carta solo si no excede 21. Esto maximiza las probabilidades de acercarse a 21.
 
----Explicación de la búsqueda en el árbol de juego y su evaluación---
+### Explicación de la búsqueda en el árbol de juego y su evaluación
+
+El árbol de juego es una estructura jerárquica que representa todos los posibles estados de un juego desde una posición inicial hasta todas las configuraciones terminales, considerando los movimientos disponibles para los jugadores. El algoritmo Minimax recorre este árbol para determinar la mejor estrategia de juego.
+
+Construcción del Árbol de Juego
+    
+    Nodo raíz: Representa el estado actual del juego.
+    Niveles alternados: Cada nivel corresponde a las posibles decisiones de un jugador:
+    Maximización (Max): Representa al jugador que intenta maximizar su ganancia.
+    Minimización (Min): Representa al oponente que intenta minimizar la ganancia del otro jugador.
+
+    Hojas: Los nodos terminales del árbol representan los resultados finales del juego (victoria, derrota, empate) con valores numéricos asociados, como:
+      
+      Victoria = +1
+      Derrota = -1
+      Empate = 0
+
+Proceso de Búsqueda
+  
+  El algoritmo evalúa cada nodo del árbol siguiendo un enfoque recursivo:
+
+      Comienza desde la raíz y recorre el árbol en profundidad.
+
+  En cada nivel del árbol:
+
+      Si es el turno de Max, selecciona el valor máximo de los hijos.
+      Si es el turno de Min, selecciona el valor mínimo de los hijos.
+      En los nodos terminales, el valor se calcula directamente con base en la puntuación asignada al estado del juego.
+
+Evaluación de los Estados del Juego
+
+  Los nodos hoja se evalúan directamente según las reglas del juego.
+  Para los nodos intermedios, el algoritmo asigna un valor basándose en las mejores decisiones disponibles para los jugadores. Este valor es propagado hacia arriba en el árbol para influir en las decisiones de los niveles superiores.
+
+  Por ejemplo:
+
+    Si un jugador tiene tres posibles jugadas con resultados -1, 0, +1, el jugador Max elegirá la jugada con el resultado +1, mientras que el jugador Min optará por la jugada con el resultado -1.
+
 
 ### Optimización del algoritmo con poda Alfa-Beta:
 
@@ -95,3 +132,5 @@ Considerando una partida donde el jugador hace la primera jugada y luego la comp
 | 2°         | ~105ms   | ~33ms    | 72ms       | 68.6%                   |
 | 3°         | ~8ms     | ~3ms     | 5ms        | 62.5%                   |
 | 4°         | ~1ms     | ~1ms     | 0ms        | 0%                      |
+
+### Análisis de complejidad temporal de Minimax, antes y despues de aplicar la poda
