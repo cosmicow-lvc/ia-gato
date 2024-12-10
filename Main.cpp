@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Tablero.h"
-#include "Tablerosinpoda.h"
 using namespace std;
 
 void input_tablero_vs_ia(int n, int m, Tablero* tabl){
